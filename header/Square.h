@@ -22,8 +22,8 @@ private:
 public:
     Square(bool ContainsWarpSpace, int Id, int x, int y, int Length);
     double computeArea() override;
-    bool isPoinOnShape(int x, int y) override;
-    bool isPointInShape(int x, int y) override;
+   bool isPointInShape(int x, int y) const override;
+  bool isPointOnShape(int x, int y) const override;
 
     
     string toString();

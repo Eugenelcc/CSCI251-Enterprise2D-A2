@@ -38,8 +38,8 @@ public:
     
 
     virtual double computeArea();
-    virtual bool isPoinOnShape(int x, int y);  
-    virtual bool isPointInShape(int x, int y);   
+   virtual bool isPointInShape(int x, int y) const = 0;
+  virtual bool isPointOnShape(int x, int y) const = 0;  
 
     void setName(string name); // Shape
     void setContainsWarpSpace(bool containsWarpSpace);

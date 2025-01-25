@@ -48,7 +48,7 @@ int displayMenu()
         // OPTION 1  - Input Sensor Data
         if (userchoice == 1)
         {
-            cout << "[Input sensor data]" << endl;
+    
             try
             {
                 displayInfo(); // Call the updated displayInfo function
@@ -142,7 +142,15 @@ void displayInfo()
 
     if (ShapeName == "SQUARE")
     {
-        cout << "Square coordinates are: (" << x[0] << ", " << y[0] << ")" << endl;
+        for(int i=0 ;i<4;i++)
+        {
+            cout << "Square coordinates " << i << " are:  ( "<< x[i]  << "," << y[i] << ")" << endl;
+            
+        
+        }
+        cout << minX << " " << minY << " " << maxX << " " << maxY << endl;
+        //cout << "Square coordinates are: (" << x[0] << ", " << y[0] << ")" << endl;
+        
         //Square *square = new Square(warpSpace, shapes.size(), minX, minY, maxX - minX);
         //shapes.push_back(square);
     }

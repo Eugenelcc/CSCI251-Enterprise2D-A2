@@ -20,7 +20,7 @@ double Square::computeArea()
     return area;
 }
 
-bool Square::isPointInShape(int x, int y)
+bool Square::isPointInShape(int x, int y) const
 {
     if (x > PositionX && x < PositionX + Length && y > PositionY && y < PositionY + Length)
     {
@@ -29,7 +29,7 @@ bool Square::isPointInShape(int x, int y)
     return false;
 }
 
-bool Square::isPoinOnShape(int x, int y)
+bool Square::isPointOnShape(int x, int y) const
 {
     if (x == PositionX || x == PositionX + Length)
     {
@@ -68,7 +68,7 @@ string Square::toString()
     {
         for (int j = PositionY; j <= PositionY + Length; j++)
         {
-            if (isPoinOnShape(i, j))
+            if (isPointOnShape(i, j))
             {
                 if ((i == PositionX && j == PositionY) ||
                     (i == PositionX && j == PositionY + Length) ||
