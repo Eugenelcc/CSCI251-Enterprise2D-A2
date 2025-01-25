@@ -3,6 +3,7 @@
         "*.ejs": "html",
         "ostream": "cpp",
         "iostream": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "typeinfo": "cpp"
     }
 }
