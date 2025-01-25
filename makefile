@@ -5,7 +5,7 @@ CXX = g++
 CXXFLAGS =  -std=c++11
 
 # Target executable
-TARGET = csci251_a1.app
+TARGET = csci251_a2.app
 
 # Source directory
 SRC_DIR = .

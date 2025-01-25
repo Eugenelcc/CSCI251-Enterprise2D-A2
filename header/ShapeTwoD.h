@@ -7,6 +7,8 @@
 #include <sstream>
 #include <iomanip>
 #include <math.h>
+#include <cmath>
+
 
 using namespace std;
 
@@ -23,7 +25,7 @@ protected:
     bool containsWarpSpace;
     int ShapeId;
     double area;
-    vector<Point> Shapepoints;
+    vector<Point> ShapePoints;
 
 public:
     ShapeTwoD(string name, bool containsWarpSpace);
@@ -31,21 +33,22 @@ public:
     string getName();
     bool getContainsWarpSpace();
     double getArea();
+    int getShapeId();
 
     
 
     virtual double computeArea();
-    virtual bool isPoinOnShape(int x, int y);
-    virtual bool isPointInShape(int x, int y);
+    virtual bool isPoinOnShape(int x, int y);  
+    virtual bool isPointInShape(int x, int y);   
 
     void setName(string name); // Shape
     void setContainsWarpSpace(bool containsWarpSpace);
     void setShapeId(int Id);
     void setPoints(vector<Point> points);
 
-     virtual string toString();
+    virtual string toString();  
 };
 
-int displaymenu();
+ 
 
 #endif

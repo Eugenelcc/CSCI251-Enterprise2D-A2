@@ -26,6 +26,14 @@ double ShapeTwoD ::getArea()
     return area;
 }
 
+
+
+int ShapeTwoD::getShapeId() 
+{
+  return this->ShapeId;
+}
+
+
 // setter
 void ShapeTwoD ::setName(string name)
 {
@@ -44,7 +52,7 @@ void ShapeTwoD ::setShapeId(int Id)
 
 void ShapeTwoD ::setPoints(vector<Point> points)
 {
-    this->Shapepoints = points;
+    this->ShapePoints = points;
 }
 
 // compute area
@@ -54,11 +62,15 @@ double ShapeTwoD ::computeArea()
     return 0;
 }
 
+
+
+
 string ShapeTwoD::toString()
 {
     ostringstream oss;
-    oss << "Name: " << name << endl
-        << "Special Type: " << (containsWarpSpace ? "WS" : "NS") << endl
-        << "Area: " << area;
+    oss << "Shape[" << getShapeId() << "]" << endl;
+    oss << "Name: " << getName() << endl
+        << "Special Type: " << (getContainsWarpSpace() ? "WS" : "NS") << endl
+        << "Area: " << getArea() << " units square" << endl;  
     return oss.str();
 }

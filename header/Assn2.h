@@ -1,7 +1,6 @@
 #ifndef ASSN_H
 #define ASSN_H
 
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -9,12 +8,18 @@
 #include <iomanip>
 #include <unistd.h>
 
-
 using namespace std;
 
-
-extern string student_Name ;
-extern  string student_ID;
+extern string student_Name;
+extern string student_ID;
 extern string divider;
 
-#endif 
+
+
+void toUpperCase(string &str);
+void promptUserToPressEnterToContinue();
+void displayInfo();
+int displayMenu();
+
+
+#endif
