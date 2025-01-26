@@ -25,6 +25,9 @@ protected:
     int ShapeId;
     double area;
     vector<Point> ShapePoints;
+    
+public:
+    bool areaHasBeenComputed    = false;
 
 public:
     ShapeTwoD(string name, bool containsWarpSpace);

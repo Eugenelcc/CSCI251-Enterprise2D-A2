@@ -26,28 +26,22 @@ double Square::computeArea()
         }
     }
     int length = maxX - minX;
-    area = length * length;
-    return area;
+    this->area = length * length;
+    return this->area;
 }
 
 bool Square::isPointInShape(int x, int y) const
 {
-
     int minX = INT_MAX, maxX = INT_MIN;
     int minY = INT_MAX, maxY = INT_MIN;
 
     for (Point p : this->ShapePoints)
     {
-        if (p.x < minX && p.y < minY)
-        {
-            minX = p.x;
-            minY = p.y;
-        }
-        if (p.x > maxX && p.y > maxY)
-        {
-            maxX = p.x;
-            maxY = p.y;
-        }
+        minX = std::min(minX, p.x);
+        minY = std::min(minY, p.y);
+
+        maxX = std::max(maxX, p.x);
+        maxY = std::max(maxY, p.y);
     }
 
     if (x > minX && x < maxX && y > minY && y < maxY)
@@ -71,17 +65,14 @@ bool Square::isPointOnShape(int x, int y) const
 
     for (Point p : this->ShapePoints)
     {
-        if (p.x < minX && p.y < minY)
-        {
-            minX = p.x;
-            minY = p.y;
-        }
-        if (p.x > maxX && p.y > maxY)
-        {
-            maxX = p.x;
-            maxY = p.y;
-        }
+        minX = std::min(minX, p.x);
+        minY = std::min(minY, p.y);
+
+        maxX = std::max(maxX, p.x);
+        maxY = std::max(maxY, p.y);
     }
+    // cout << "isPointOnShape() - Min: " << minX << ", " << minY << endl;
+    // cout << "isPointOnShape() - Max: " << maxX << ", " << maxY << endl;
 
     if ((x == minX || x == maxX) && (y >= minY && y <= maxY))
     {
@@ -108,26 +99,25 @@ string Square::toString()
     oss << "Point[3] " << "(" << this->ShapePoints[3].x << "," << this->ShapePoints[3].y << ")" << endl;
     oss << endl;
 
-    oss << "Point on perimeter: " << endl;
-
-    int count = 0;
     int minX = INT_MAX, maxX = INT_MIN;
     int minY = INT_MAX, maxY = INT_MIN;
-
     for (Point p : this->ShapePoints)
     {
-        if (p.x < minX && p.y < minY)
-        {
-            minX = p.x;
-            minY = p.y;
-        }
-        if (p.x > maxX && p.y > maxY)
-        {
-            maxX = p.x;
-            maxY = p.y;
-        }
-    }
 
+        // if (p.x < minX) {
+        //     minX = p.x;
+        // }
+        minX = std::min(minX, p.x);
+        minY = std::min(minY, p.y);
+
+        maxX = std::max(maxX, p.x);
+        maxY = std::max(maxY, p.y);
+    }
+    // cout << "Min: " << minX << ", " << minY << endl;
+    // cout << "Max: " << maxX << ", " << maxY << endl;
+
+    int count = 0;
+    oss << "Point on perimeter: ";
     for (int i = minX; i <= maxX; i++)
     {
         for (int j = minY; j <= maxY; j++)
@@ -141,39 +131,36 @@ string Square::toString()
                 if ((i == minX && j == minY) ||
                     (i == minX && j == maxY) ||
                     (i == maxX && j == minY) ||
-                    (i = maxX && j == maxY))
+                    (i == maxX && j == maxY))
                     continue;
+                oss << "(" << i << ", " << j << "), ";
+                count++;
+                // cout << "Count perim: " << count << endl;
             }
-            oss << "(" << i << ", " << j << "), ";
         }
     }
-}
+    if (count == 0)
+    {
+        oss << "None";
+        
+    }
 
-// if (count == 0)
-//     oss << "none!\n";
-// else
-//     oss << "\b\b \n";
-// oss << endl;
-
-// oss << "Points within shape: " << endl;
-// count = 0;
-
-// for (int i = PositionX; i <= PositionX + Length; i++)
-// {
-//     for (int j = PositionY; j <= PositionY + Length; j++)
-//     {
-//         if (isPointInShape(i, j))
-//         {
-//             oss << "(" << i << ", " << j << "), ";
-//             count++;
-//         }
-//     }
-// }
-// if (count == 0)
-//     oss << "none!\n";
-// else
-//     oss << "\b\b \n";
-
-// return oss.str();
-return "";
+    count = 0;
+    oss << endl << "Points within shape: ";
+    for (int i = minX; i <= maxX; i++)
+    {
+        for (int j = minY; j <= maxY; j++)
+        {
+            if (isPointInShape(i, j))
+            {
+                oss << "(" << i << ", " << j << "), ";
+                count++;
+            }
+        }
+    }
+    if (count == 0)
+    {
+        oss << "None";
+    }
+    return oss.str();
 }

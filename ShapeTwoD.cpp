@@ -59,11 +59,8 @@ void ShapeTwoD ::setPoints(vector<Point> points)
 
 double ShapeTwoD ::computeArea()
 {
-    return -69;
+    return area;
 }
-
-
-
 
 string ShapeTwoD::toString()
 { 

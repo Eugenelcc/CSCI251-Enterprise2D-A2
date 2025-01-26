@@ -173,16 +173,35 @@ void displayInfo()
         //  Rectangle *rectangle = new Rectangle(flag, shapes.size(), minX, minY, maxX - minX, maxY - minY);
         //  shapes.push_back(rectangle);
     }
+
+    else if (ShapeName == "CIRCLE")
+    {
+        // cout << "Circle coordinates are: (" << x[0] << ", " << y[0] << ")" << endl;
+        // Circle *circle = new Circle(flag, shapes.size(), x[0], y[0], radius);
+        // shapes.push_back(circle);
+    }
+
+    else if (ShapeName == "CROSS")
+    {
+        // cout << "Cross coordinates are: (" << x[0] << ", " << y[0] << ")" << endl;
+        // Cross *cross = new Cross(flag, shapes.size(), x[0], y[0], x[1], y[1]);
+        // shapes.push_back(cross);
+    }
     cout << "Entry Saved" << endl;
 }
 
 void computeArea()
 {
-    cout << "computeArea" << endl;
-    for (vector<ShapeTwoD *>::size_type i = 0; i < shapes.size(); i++)
-        ;
-
-    cout << "\nComputation completed! (" << (shapes.size()) << " records were updated)" << endl;
+    int numRecordsUpdataed = 0;
+    for (size_t i = 0; i < shapes.size(); i++)
+    {
+        if (shapes[i]->areaHasBeenComputed == false) {
+            shapes[i]->computeArea();
+            shapes[i]->areaHasBeenComputed = true;
+            numRecordsUpdataed++;
+        }
+    }
+    cout << "\nComputation completed! (" << numRecordsUpdataed << " records were updated)" << endl;
 }
 
 void reportShapes()
