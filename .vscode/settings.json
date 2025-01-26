@@ -5,6 +5,7 @@
         "iostream": "cpp",
         "string": "cpp",
         "typeinfo": "cpp",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        "new": "cpp"
     }
 }

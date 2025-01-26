@@ -11,22 +11,16 @@
 #include "ShapeTwoD.h"
 
 using namespace std;
+
 class Square : public ShapeTwoD
 {
-private:
-    bool containsWarpSpace;
-    int PositionX;
-    int PositionY;
-    int Length;
-
 public:
-    Square(bool ContainsWarpSpace, int Id, int x, int y, int Length);
+    Square(bool ContainsWarpSpace, int ShapeId);
     double computeArea() override;
-   bool isPointInShape(int x, int y) const override;
-  bool isPointOnShape(int x, int y) const override;
+    bool isPointInShape(int x, int y) const override;
+    bool isPointOnShape(int x, int y) const override;
 
-    
-    string toString();
+    string toString() override;
 };
 
 #endif

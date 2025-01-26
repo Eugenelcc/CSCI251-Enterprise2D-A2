@@ -9,7 +9,6 @@
 #include <math.h>
 #include <cmath>
 
-
 using namespace std;
 
 struct Point
@@ -35,20 +34,18 @@ public:
     double getArea();
     int getShapeId();
 
-    
-
     virtual double computeArea();
-   virtual bool isPointInShape(int x, int y) const = 0;
-  virtual bool isPointOnShape(int x, int y) const = 0;  
+    virtual bool isPointInShape(int x, int y) const = 0;
+    virtual bool isPointOnShape(int x, int y) const = 0;
 
     void setName(string name); // Shape
     void setContainsWarpSpace(bool containsWarpSpace);
     void setShapeId(int Id);
+
+    
     void setPoints(vector<Point> points);
 
-    virtual string toString();  
+    virtual string toString();
 };
-
- 
 
 #endif

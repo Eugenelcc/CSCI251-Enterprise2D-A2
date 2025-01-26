@@ -2,16 +2,22 @@
 #include "./header/Assn2.h"
 #include "./header/ShapeTwoD.h"
 #include "./header/Square.h"
+#include <iostream>
+#include <vector>
 
 // Global variable
 string student_Name = "Eugene Lay Chai Chun";
 string student_ID = "907083";
 string divider = "=========================================";
 
+ 
+ 
 vector<ShapeTwoD *> shapes;
 
 int main()
 {
+ 
+
     displayMenu();
     return 0;
 }
@@ -48,7 +54,7 @@ int displayMenu()
         // OPTION 1  - Input Sensor Data
         if (userchoice == 1)
         {
-    
+
             try
             {
                 displayInfo(); // Call the updated displayInfo function
@@ -59,6 +65,25 @@ int displayMenu()
                 cout << "Returning to display menu." << endl;
             }
         }
+
+        else if (userchoice == 2)
+        {
+            cout << "Option 2 selected" << endl;
+            computeArea();
+        }
+        // OPTION 3  - Print Shape Report
+        else if (userchoice == 3)
+        {
+            cout << "Option 3 selected" << endl;
+            reportShapes();
+        }
+
+        // OPTION 4  - Sort Shape data
+        else if (userchoice == 4)
+        {
+            cout << "Option 4 selected" << endl;
+        }
+
         // Other options...
         else if (userchoice == 5)
         {
@@ -113,8 +138,7 @@ void displayInfo()
         return;
     }
 
-
-// SPECIAL TYPE
+    // SPECIAL TYPE
     if (SpecialType == "WS")
         warpSpace = true;
     else if (SpecialType == "NS")
@@ -125,39 +149,58 @@ void displayInfo()
         return;
     }
 
-    int x[4], y[4];
-    for (int i = 0; i < 4; ++i)
-    {
-        cout << "Please enter x-ordinate of pt." << (i + 1) << ": ";
-        cin >> x[i];
-        cout << "Please enter y-ordinate of pt." << (i + 1) << ": ";
-        cin >> y[i];
-        cout << endl;
-    }
-
-    int minX = *min_element(x, x + 4);
-    int minY = *min_element(y, y + 4);
-    int maxX = *max_element(x, x + 4);
-    int maxY = *max_element(y, y + 4);
-
     if (ShapeName == "SQUARE")
     {
-        for(int i=0 ;i<4;i++)
+        vector<Point> vectorOfPoints;
+        for (int i = 0; i < 4; ++i)
         {
-            cout << "Square coordinates " << i << " are:  ( "<< x[i]  << "," << y[i] << ")" << endl;
-            
-        
+            Point newPoint;
+            cout << "Please enter x-ordinate of pt." << (i + 1) << ": ";
+            cin >> newPoint.x;
+            cout << "Please enter y-ordinate of pt." << (i + 1) << ": ";
+            cin >> newPoint.y;
+            cout << endl;
+            vectorOfPoints.emplace_back(newPoint);
         }
-        cout << minX << " " << minY << " " << maxX << " " << maxY << endl;
-        //cout << "Square coordinates are: (" << x[0] << ", " << y[0] << ")" << endl;
-        
-        //Square *square = new Square(warpSpace, shapes.size(), minX, minY, maxX - minX);
-        //shapes.push_back(square);
+
+        Square *square = new Square(warpSpace, shapes.size()); // true , id
+        square->setPoints(vectorOfPoints);
+        shapes.emplace_back(square);
     }
     else if (ShapeName == "RECTANGLE")
     {
-        cout << "Rectangle coordinates are: (" << x[0] << ", " << y[0] << ")" << endl;
-        // Rectangle *rectangle = new Rectangle(flag, shapes.size(), minX, minY, maxX - minX, maxY - minY);
-        // shapes.push_back(rectangle);
+        // cout << "Rectangle coordinates are: (" << x[0] << ", " << y[0] << ")" << endl;
+        //  Rectangle *rectangle = new Rectangle(flag, shapes.size(), minX, minY, maxX - minX, maxY - minY);
+        //  shapes.push_back(rectangle);
+    }
+    cout << "Entry Saved" << endl;
+}
+
+void computeArea()
+{
+    cout << "computeArea" << endl;
+    for (vector<ShapeTwoD *>::size_type i = 0; i < shapes.size(); i++)
+        ;
+
+    cout << "\nComputation completed! (" << (shapes.size()) << " records were updated)" << endl;
+}
+
+void reportShapes()
+{
+    // Check if there are any shapes to report
+    if (shapes.empty())
+    {
+        cout << "\nNo shapes available to report." << endl;
+        return;
+    }
+
+    // Display the total number of records
+    cout << "\nTotal number of records available = " << shapes.size() << endl;
+    cout << endl;
+    // Iterate through the shapes and display their details
+    for (size_t i = 0; i < shapes.size(); i++)
+    {
+        cout << shapes[i]->toString();
+        cout << endl;
     }
 }

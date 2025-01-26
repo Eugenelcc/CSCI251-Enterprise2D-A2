@@ -20,6 +20,9 @@ void toUpperCase(string &str);
 void promptUserToPressEnterToContinue();
 void displayInfo();
 int displayMenu();
+void computeArea();
+void reportShapes();
 
 
+ 
 #endif

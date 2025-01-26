@@ -59,14 +59,14 @@ void ShapeTwoD ::setPoints(vector<Point> points)
 
 double ShapeTwoD ::computeArea()
 {
-    return 0;
+    return -69;
 }
 
 
 
 
 string ShapeTwoD::toString()
-{
+{ 
     ostringstream oss;
     oss << "Shape[" << getShapeId() << "]" << endl;
     oss << "Name: " << getName() << endl

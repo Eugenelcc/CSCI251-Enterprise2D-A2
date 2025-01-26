@@ -4,47 +4,94 @@
 
 // initialize constructor
 
-Square::Square(bool ContainsWarpSpace, int Id, int x, int y, int _Length)
-    : ShapeTwoD("Square", ContainsWarpSpace), PositionX(x), PositionY(y), Length(_Length)
+Square::Square(bool containsWarpSpace, int ShapeId)
+    : ShapeTwoD("Square", containsWarpSpace)
 {
-    setShapeId(Id);
-    area = Length * Length;
-    ShapePoints.push_back(Point{PositionX, PositionY});                   // Square -bottom-left
-    ShapePoints.push_back(Point{PositionX + Length, PositionY});          // Square -bottom-right
-    ShapePoints.push_back(Point{PositionX + Length, PositionY + Length}); // Square -top-right
-    ShapePoints.push_back(Point{PositionX, PositionY + Length});          // Square -top-left
+    this->setShapeId(ShapeId);
 }
 
 double Square::computeArea()
 {
+    // cout << this->ShapePoints.size() << endl;
+    int minX = INT_MAX, maxX = INT_MIN;
+    for (Point p : this->ShapePoints)
+    {
+        if (p.x < minX)
+        {
+            minX = p.x;
+        }
+        if (p.x > maxX)
+        {
+            maxX = p.x;
+        }
+    }
+    int length = maxX - minX;
+    area = length * length;
     return area;
 }
 
 bool Square::isPointInShape(int x, int y) const
 {
-    if (x > PositionX && x < PositionX + Length && y > PositionY && y < PositionY + Length)
+
+    int minX = INT_MAX, maxX = INT_MIN;
+    int minY = INT_MAX, maxY = INT_MIN;
+
+    for (Point p : this->ShapePoints)
+    {
+        if (p.x < minX && p.y < minY)
+        {
+            minX = p.x;
+            minY = p.y;
+        }
+        if (p.x > maxX && p.y > maxY)
+        {
+            maxX = p.x;
+            maxY = p.y;
+        }
+    }
+
+    if (x > minX && x < maxX && y > minY && y < maxY)
     {
         return true;
     }
     return false;
+
+    //     if (x > PositionX && x < PositionX + Length && y > PositionY && y < PositionY + Length)
+    //     {
+    //         return true;
+    //     }
+    //     return false;
 }
 
 bool Square::isPointOnShape(int x, int y) const
 {
-    if (x == PositionX || x == PositionX + Length)
+
+    int minX = INT_MAX, maxX = INT_MIN;
+    int minY = INT_MAX, maxY = INT_MIN;
+
+    for (Point p : this->ShapePoints)
     {
-        if (y >= PositionY && y <= PositionY + Length)
+        if (p.x < minX && p.y < minY)
         {
-            return true;
+            minX = p.x;
+            minY = p.y;
+        }
+        if (p.x > maxX && p.y > maxY)
+        {
+            maxX = p.x;
+            maxY = p.y;
         }
     }
-    if (y == PositionY || y == PositionY + Length)
+
+    if ((x == minX || x == maxX) && (y >= minY && y <= maxY))
     {
-        if (x >= PositionX && x <= PositionX + Length)
-        {
-            return true;
-        }
+        return true;
     }
+    if ((y == minY || y == maxY) && (x >= minX && x <= maxX))
+    {
+        return true;
+    }
+
     return false;
 }
 
@@ -62,50 +109,71 @@ string Square::toString()
     oss << endl;
 
     oss << "Point on perimeter: " << endl;
-    
+
     int count = 0;
-    for (int i = PositionX; i <= PositionX + Length; i++)
+    int minX = INT_MAX, maxX = INT_MIN;
+    int minY = INT_MAX, maxY = INT_MIN;
+
+    for (Point p : this->ShapePoints)
     {
-        for (int j = PositionY; j <= PositionY + Length; j++)
+        if (p.x < minX && p.y < minY)
+        {
+            minX = p.x;
+            minY = p.y;
+        }
+        if (p.x > maxX && p.y > maxY)
+        {
+            maxX = p.x;
+            maxY = p.y;
+        }
+    }
+
+    for (int i = minX; i <= maxX; i++)
+    {
+        for (int j = minY; j <= maxY; j++)
         {
             if (isPointOnShape(i, j))
             {
-                if ((i == PositionX && j == PositionY) ||
-                    (i == PositionX && j == PositionY + Length) ||
-                    (i == PositionX + Length && j == PositionY) ||
-                    (i == PositionX + Length && j == PositionY + Length))
-                {
+                // minX, minY - // BOTTOM LEFT
+                // minX, maxY - // TOP LEFT
+                // maxX, minY - // BOTTOM RIGHT
+                // maxX, maxY - // TOP RIGHT
+                if ((i == minX && j == minY) ||
+                    (i == minX && j == maxY) ||
+                    (i == maxX && j == minY) ||
+                    (i = maxX && j == maxY))
                     continue;
-                }
-                oss << "(" << i << ", " << j << "), ";
             }
+            oss << "(" << i << ", " << j << "), ";
         }
     }
+}
 
-    if (count == 0)
-        oss << "none!\n";
-    else
-        oss << "\b\b \n";
-    oss << endl;
+// if (count == 0)
+//     oss << "none!\n";
+// else
+//     oss << "\b\b \n";
+// oss << endl;
 
-    oss << "Points within shape: " << endl;
-    count = 0;
+// oss << "Points within shape: " << endl;
+// count = 0;
 
-    for (int i = PositionX; i <= PositionX + Length; i++)
-    {
-        for (int j = PositionY; j <= PositionY + Length; j++)
-        {
-            if (isPointInShape(i, j))
-            {
-                oss << "(" << i << ", " << j << "), ";
-                count++;
-            }
-        }
-    }
-    if (count == 0)
-        oss << "none!\n";
-    else
-        oss << "\b\b \n";
+// for (int i = PositionX; i <= PositionX + Length; i++)
+// {
+//     for (int j = PositionY; j <= PositionY + Length; j++)
+//     {
+//         if (isPointInShape(i, j))
+//         {
+//             oss << "(" << i << ", " << j << "), ";
+//             count++;
+//         }
+//     }
+// }
+// if (count == 0)
+//     oss << "none!\n";
+// else
+//     oss << "\b\b \n";
 
-    return oss.str();
+// return oss.str();
+return "";
 }
