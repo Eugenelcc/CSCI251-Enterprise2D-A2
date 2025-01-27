@@ -49,7 +49,7 @@ void Cross::setPoints(vector<Point> points) {
     }
 
 
-    cout<<"Check for min and max... Cleared"<<endl;
+    //cout<<"Check for min and max... Cleared"<<endl;
 
     // Big Rectangle
     this->bigRectangle = Rectangle(false,  -1);
@@ -61,7 +61,7 @@ void Cross::setPoints(vector<Point> points) {
     });
 
 
-      cout<<"Check for Big Rectangle... Cleared"<<endl;
+      //cout<<"Check for Big Rectangle... Cleared"<<endl;
 
     vector<Point>TopCrossPoint, BottomCrossPoint, LeftCrossPoint, RightCrossPoint;
     for(Point p : this->ShapePoints){
@@ -79,7 +79,7 @@ void Cross::setPoints(vector<Point> points) {
         }
     }
 
-       cout<<"Check for Cross Points... Cleared"<<endl;
+       //cout<<"Check for Cross Points... Cleared"<<endl;
 
     // Comparing min Point value
     sort(TopCrossPoint.begin(), TopCrossPoint.end(), [](Point a, Point b) { return a.x < b.x; });
@@ -91,7 +91,7 @@ void Cross::setPoints(vector<Point> points) {
 
 
 
-       cout<<"Check for Comparitors... Cleared"<<endl;
+      // cout<<"Check for Comparitors... Cleared"<<endl;
 
     cout <<TopCrossPoint.size() << " " << BottomCrossPoint.size() << " " << LeftCrossPoint.size() << " " << RightCrossPoint.size() << endl;
 
@@ -106,7 +106,7 @@ void Cross::setPoints(vector<Point> points) {
         Point{TopCrossPoint[0].x,LeftCrossPoint[1].y}
     });
 
-   cout<<"Check for TopLeftRect... Cleared"<<endl;
+  // cout<<"Check for TopLeftRect... Cleared"<<endl;
 
     //TopRightRectangle
     this-> topRightRectangle = Rectangle(false,  -1);
@@ -116,7 +116,7 @@ void Cross::setPoints(vector<Point> points) {
         RightCrossPoint[1],
         Point{TopCrossPoint[1].x, RightCrossPoint[1].y}
     });
-    cout<<"Check for TopRightRect... Cleared"<<endl;
+  //  cout<<"Check for TopRightRect... Cleared"<<endl;
     
 
 
@@ -129,7 +129,7 @@ void Cross::setPoints(vector<Point> points) {
         Point{BottomCrossPoint[0].x, LeftCrossPoint[0].y}
     });
 
-    cout << "Check for BottomLeftRect... Cleared" << endl;
+  //  cout << "Check for BottomLeftRect... Cleared" << endl;
     
     //BottomRightRectangle
     this->bottomRightRectangle = Rectangle(false,-1);
@@ -140,7 +140,7 @@ void Cross::setPoints(vector<Point> points) {
         Point{BottomCrossPoint[1].x, RightCrossPoint[0].y}
     });
 
-     cout << "Check for BottomRight Rect... Cleared" << endl;
+   //  cout << "Check for BottomRight Rect... Cleared" << endl;
 }
 
 
@@ -195,15 +195,8 @@ string Cross::toString(){
         {
             if (isPointOnShape(i, j))
             {
-                // minX, minY - // BOTTOM LEFT
-                // minX, maxY - // TOP LEFT
-                // maxX, minY - // BOTTOM RIGHT
-                // maxX, maxY - // TOP RIGHT
-                if ((i == minX && j == minY) ||
-                    (i == minX && j == maxY) ||
-                    (i == maxX && j == minY) ||
-                    (i == maxX && j == maxY))
-                    continue;
+           
+            
                 oss << "(" << i << ", " << j << "), ";
                 count++;
                 // cout << "Count perim: " << count << endl;
