@@ -27,7 +27,7 @@ protected:
     vector<Point> ShapePoints;
     
 public:
-    bool areaHasBeenComputed    = false;
+    bool areaHasBeenComputed  = false;
 
 public:
     ShapeTwoD(string name, bool containsWarpSpace);

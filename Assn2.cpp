@@ -2,6 +2,8 @@
 #include "./header/Assn2.h"
 #include "./header/ShapeTwoD.h"
 #include "./header/Square.h"
+#include "./header/Rectangle.h"
+#include "./header/Circle.h"
 #include <iostream>
 #include <vector>
 
@@ -10,13 +12,10 @@ string student_Name = "Eugene Lay Chai Chun";
 string student_ID = "907083";
 string divider = "=========================================";
 
- 
- 
 vector<ShapeTwoD *> shapes;
 
 int main()
 {
- 
 
     displayMenu();
     return 0;
@@ -169,16 +168,45 @@ void displayInfo()
     }
     else if (ShapeName == "RECTANGLE")
     {
-        // cout << "Rectangle coordinates are: (" << x[0] << ", " << y[0] << ")" << endl;
-        //  Rectangle *rectangle = new Rectangle(flag, shapes.size(), minX, minY, maxX - minX, maxY - minY);
-        //  shapes.push_back(rectangle);
+
+        vector<Point> vectorOfPoints;
+        for (int i = 0; i < 4; ++i)
+        {
+            Point newPoint;
+            cout << "Please enter X-ordinate of pt." << (i + 1) << ": ";
+            cin >> newPoint.x;
+            cout << "Please enter Y-ordinate of pt." << (i + 1) << ": ";
+            cin >> newPoint.y;
+            cout << endl;
+            vectorOfPoints.emplace_back(newPoint);
+        }
+
+        Rectangle *rectangle = new Rectangle(warpSpace, shapes.size()); // true , id
+        rectangle->setPoints(vectorOfPoints);
+        shapes.emplace_back(rectangle);
     }
 
     else if (ShapeName == "CIRCLE")
     {
-        // cout << "Circle coordinates are: (" << x[0] << ", " << y[0] << ")" << endl;
-        // Circle *circle = new Circle(flag, shapes.size(), x[0], y[0], radius);
-        // shapes.push_back(circle);
+        vector<Point> vectorOfPoints;
+        int radius;
+        Point newPoint; // << Array >>
+        cout << "Please enter x-ordinate of center: ";
+        cin >> newPoint.x;
+        cout << "Please enter y-ordinate of center: ";
+        cin >> newPoint.y;
+
+        cout << "Please enter radius (Units) : ";
+        cin >> radius;
+
+        vectorOfPoints.emplace_back(newPoint);
+
+        Circle *circle = new Circle(warpSpace, shapes.size(), radius, vectorOfPoints);
+        shapes.emplace_back(circle);
+
+
+
+
     }
 
     else if (ShapeName == "CROSS")
@@ -195,7 +223,8 @@ void computeArea()
     int numRecordsUpdataed = 0;
     for (size_t i = 0; i < shapes.size(); i++)
     {
-        if (shapes[i]->areaHasBeenComputed == false) {
+        if (shapes[i]->areaHasBeenComputed == false)
+        {
             shapes[i]->computeArea();
             shapes[i]->areaHasBeenComputed = true;
             numRecordsUpdataed++;
