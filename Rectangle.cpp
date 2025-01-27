@@ -156,6 +156,7 @@ string Rectangle::toString()
     {
         oss << "None";
     }
+     oss << endl;
     return oss.str();
 
     }

@@ -23,6 +23,7 @@ int displayMenu();
 void computeArea();
 void reportShapes();
 
+void sortShape();
 
  
 #endif

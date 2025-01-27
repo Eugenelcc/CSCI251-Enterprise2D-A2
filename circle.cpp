@@ -109,6 +109,7 @@ string Circle::toString()
     {
         oss << "None";
     }
+     oss << endl;
     return oss.str();
 
 

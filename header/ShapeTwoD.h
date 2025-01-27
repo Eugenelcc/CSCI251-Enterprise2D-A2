@@ -46,7 +46,7 @@ public:
     void setShapeId(int Id);
 
     
-    void setPoints(vector<Point> points);
+    virtual void setPoints(vector<Point> points);
 
     virtual string toString();
 };

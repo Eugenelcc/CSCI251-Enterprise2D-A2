@@ -162,5 +162,6 @@ string Square::toString()
     {
         oss << "None";
     }
+    oss << endl;
     return oss.str();
 }

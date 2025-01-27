@@ -4,6 +4,7 @@
 #include "./header/Square.h"
 #include "./header/Rectangle.h"
 #include "./header/Circle.h"
+#include "./header/Cross.h"
 #include <iostream>
 #include <vector>
 
@@ -57,6 +58,7 @@ int displayMenu()
             try
             {
                 displayInfo(); // Call the updated displayInfo function
+                promptUserToPressEnterToContinue();
             }
             catch (const std::exception &e)
             {
@@ -69,23 +71,27 @@ int displayMenu()
         {
             cout << "Option 2 selected" << endl;
             computeArea();
+            promptUserToPressEnterToContinue();
         }
         // OPTION 3  - Print Shape Report
         else if (userchoice == 3)
         {
             cout << "Option 3 selected" << endl;
             reportShapes();
+            promptUserToPressEnterToContinue();
         }
 
         // OPTION 4  - Sort Shape data
         else if (userchoice == 4)
-        {
+        {   
             cout << "Option 4 selected" << endl;
+            sortShape();
+            promptUserToPressEnterToContinue();
         }
 
         // Other options...
         else if (userchoice == 5)
-        {
+        {   
             break;
         }
     }
@@ -203,17 +209,25 @@ void displayInfo()
 
         Circle *circle = new Circle(warpSpace, shapes.size(), radius, vectorOfPoints);
         shapes.emplace_back(circle);
-
-
-
-
     }
 
     else if (ShapeName == "CROSS")
     {
-        // cout << "Cross coordinates are: (" << x[0] << ", " << y[0] << ")" << endl;
-        // Cross *cross = new Cross(flag, shapes.size(), x[0], y[0], x[1], y[1]);
-        // shapes.push_back(cross);
+        vector<Point> vectorOfPoints;
+        for (int i = 0; i < 12; ++i) // Cross Verticles
+        {
+            Point newPoint;
+            cout << "Please enter X-ordinate of pt." << (i + 1) << ": ";
+            cin >> newPoint.x;
+            cout << "Please enter Y-ordinate of pt." << (i + 1) << ": ";
+            cin >> newPoint.y;
+            cout << endl;
+            vectorOfPoints.emplace_back(newPoint);
+        }
+
+        Cross *cross = new Cross(warpSpace, shapes.size()); // true , id
+        cross->setPoints(vectorOfPoints);
+        shapes.emplace_back(cross);
     }
     cout << "Entry Saved" << endl;
 }
@@ -251,4 +265,65 @@ void reportShapes()
         cout << shapes[i]->toString();
         cout << endl;
     }
+}
+
+void sortShape()
+{
+
+    char userInputSort;
+    while (true)
+    {
+        cout << "\n a) Sort by area (ascending)" << endl;
+        cout << " b) Sort by area (descending)" << endl;
+        cout << " c) Sort by special type and area" << endl;
+        cout << "\n Please Select sort option ('q' to go main menu)" << endl;
+
+        cin >> userInputSort;
+        cout << endl;
+
+        if (userInputSort == 'a')
+        {
+            cout << "Sort by area (ascending)" << endl;
+            sort(shapes.begin(), shapes.end(), [](ShapeTwoD *a, ShapeTwoD *b)
+                 { return a->getArea() < b->getArea(); });
+
+            reportShapes();
+            break;
+        }
+
+        else if (userInputSort== 'b')
+        {
+            cout << "Sort by area (descending)" << endl;
+            sort(shapes.begin(), shapes.end(), [](ShapeTwoD *a, ShapeTwoD *b)
+                 { if( a->getArea() > b->getArea()){
+                    return true;
+                 }
+                 return false;
+                 });
+
+            reportShapes();
+            break;
+        }
+
+        else if (userInputSort == 'c')
+        {
+            cout << "Sort by special type and area" << endl;
+            sort(shapes.begin(), shapes.end(), [](ShapeTwoD *a, ShapeTwoD *b)
+                 {
+                if (a->getContainsWarpSpace() == b->getContainsWarpSpace())
+                {
+                    return a->getArea() < b->getArea();
+                }
+                return a->getContainsWarpSpace() > b->getContainsWarpSpace(); });
+
+            reportShapes();
+            break;
+        }
+
+        else if (userInputSort = 'q')
+        {
+            break;
+        }
+    }
+
 }
