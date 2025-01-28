@@ -25,6 +25,8 @@ public:
 private:
     Rectangle bigRectangle;
     Rectangle topLeftRectangle, topRightRectangle, bottomLeftRectangle, bottomRightRectangle;
+
+   vector<Point> TopCrossPoint, BottomCrossPoint, LeftCrossPoint, RightCrossPoint;
 };
 
 
