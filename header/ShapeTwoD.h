@@ -53,6 +53,8 @@ public:
     virtual void setPoints(vector<Point> points);
 
     virtual string toString();
+
+    double RoundToDecimalPlaces(double value, int decimalPlaces);
 };
 
 #endif

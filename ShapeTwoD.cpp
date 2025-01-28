@@ -68,6 +68,12 @@ string ShapeTwoD::toString()
     oss << "Shape[" << getShapeId() << "]" << endl;
     oss << "Name: " << getName() << endl
         << "Special Type: " << (getContainsWarpSpace() ? "WS" : "NS") << endl
-        << "Area: " << getArea() << " units square" << endl;  
+        << "Area: " << RoundToDecimalPlaces(getArea(),2) << " units square" << endl;  
     return oss.str();
 }
+
+double ShapeTwoD::RoundToDecimalPlaces(double value, int decimalPlaces) {
+    double scale = std::pow(10.0, decimalPlaces);
+    return std::round(value * scale) / scale;
+}
+ 
