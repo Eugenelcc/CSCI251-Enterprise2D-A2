@@ -12,8 +12,8 @@ Rectangle::Rectangle(bool containsWarpSpace, int ShapeId)
 
 double Rectangle::computeArea()
 {
-    int minX = INT_MAX, maxX = INT_MIN;
-    int minY = INT_MAX, maxY = INT_MIN;
+    int minX = 9999, maxX = -9999;
+    int minY = 9999, maxY = -9999;
 
     for (Point p : this->ShapePoints)
     {
@@ -33,8 +33,8 @@ double Rectangle::computeArea()
 
 bool Rectangle::isPointInShape(int x, int y) const
 {
-    int minX = INT_MAX, maxX = INT_MIN;
-    int minY = INT_MAX, maxY = INT_MIN;
+    int minX = 9999, maxX = -9999;
+    int minY = 9999, maxY = -9999;
 
     for (Point p : this->ShapePoints)
     {
@@ -54,8 +54,8 @@ bool Rectangle::isPointInShape(int x, int y) const
 
 bool Rectangle::isPointOnShape(int x, int y) const
 {
-    int minX = INT_MAX, maxX = INT_MIN;
-    int minY = INT_MAX, maxY = INT_MIN;
+    int minX = 9999, maxX = -9999;
+    int minY = 9999, maxY = -9999;
 
     for (Point p : this->ShapePoints)
     {
@@ -93,8 +93,8 @@ string Rectangle::toString()
     oss << "Point[3] " << "(" << this->ShapePoints[3].x << "," << this->ShapePoints[3].y << ")" << endl;
     oss << endl;
 
-    int minX = INT_MAX, maxX = INT_MIN;
-    int minY = INT_MAX, maxY = INT_MIN;
+    int minX = 9999, maxX = -9999;
+    int minY = 9999, maxY = -9999;
     for (Point p : this->ShapePoints)
     {
 

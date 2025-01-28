@@ -36,8 +36,8 @@ void Cross::setPoints(vector<Point> points)
 
     this->ShapePoints = points;
 
-    int minX = INT_MAX, maxX = INT_MIN;
-    int minY = INT_MAX, maxY = INT_MIN;
+    int minX = 9999, maxX = -9999;
+    int minY = 9999, maxY = -9999;
     for (Point p : this->ShapePoints)
     {
         minX = std::min(minX, p.x);
@@ -312,8 +312,8 @@ string Cross::toString()
     }
     oss << endl;
 
-    int minX = INT_MAX, maxX = INT_MIN;
-    int minY = INT_MAX, maxY = INT_MIN;
+    int minX = 9999, maxX = -9999;
+    int minY = 9999, maxY = -9999;
     for (Point p : this->ShapePoints)
     {
 

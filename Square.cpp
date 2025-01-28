@@ -13,7 +13,7 @@ Square::Square(bool containsWarpSpace, int ShapeId)
 double Square::computeArea()
 {
     // cout << this->ShapePoints.size() << endl;
-    int minX = INT_MAX, maxX = INT_MIN;
+    int minX = 9999, maxX = -9999;
     for (Point p : this->ShapePoints)
     {
         if (p.x < minX)
@@ -32,8 +32,8 @@ double Square::computeArea()
 
 bool Square::isPointInShape(int x, int y) const
 {
-    int minX = INT_MAX, maxX = INT_MIN;
-    int minY = INT_MAX, maxY = INT_MIN;
+    int minX = 9999, maxX = -9999;
+    int minY = 9999, maxY = -9999;
 
     for (Point p : this->ShapePoints)
     {
@@ -60,8 +60,8 @@ bool Square::isPointInShape(int x, int y) const
 bool Square::isPointOnShape(int x, int y) const
 {
 
-    int minX = INT_MAX, maxX = INT_MIN;
-    int minY = INT_MAX, maxY = INT_MIN;
+    int minX = 9999, maxX = -9999;
+    int minY = 9999, maxY = -9999;
 
     for (Point p : this->ShapePoints)
     {
@@ -99,8 +99,8 @@ string Square::toString()
     oss << "Point[3] " << "(" << this->ShapePoints[3].x << "," << this->ShapePoints[3].y << ")" << endl;
     oss << endl;
 
-    int minX = INT_MAX, maxX = INT_MIN;
-    int minY = INT_MAX, maxY = INT_MIN;
+    int minX = 9999, maxX = -9999;
+    int minY = 9999, maxY = -9999;
     for (Point p : this->ShapePoints)
     {
 
