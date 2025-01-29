@@ -1,0 +1,4 @@
+# ignore ALL .{output} files
+*.app .exe .out
+
+ 
