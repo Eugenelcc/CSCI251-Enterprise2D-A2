@@ -24,6 +24,7 @@ double Circle::computeArea()
 
 bool Circle::isPointInShape(int x, int y) const{
 
+    
     int centerX = this->ShapePoints[0].x;
     int centerY = this->ShapePoints[0].y;
 
